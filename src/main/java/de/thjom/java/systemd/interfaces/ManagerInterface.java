@@ -13,7 +13,7 @@ package de.thjom.java.systemd.interfaces;
 
 import de.thjom.java.systemd.Pair;
 import de.thjom.java.systemd.Signal;
-import de.thjom.java.systemd.StructForUnitEnable;
+import de.thjom.java.systemd.types.StructForUnitEnableAndDisable;
 import de.thjom.java.systemd.types.*;
 import org.freedesktop.dbus.DBusPath;
 import org.freedesktop.dbus.annotations.DBusInterfaceName;
@@ -39,13 +39,13 @@ public interface ManagerInterface extends DBusInterface {
     void clearJobs();
 
     @DBusMemberName(value = "DisableUnitFiles")
-    List<UnitFileChange> disableUnitFiles(List<String> names, boolean runtime);
+    List<StructForUnitEnableAndDisable> disableUnitFiles(List<String> names, boolean runtime);
 
     @DBusMemberName(value = "Dump")
     String dump();
 
     @DBusMemberName(value = "EnableUnitFiles")
-    Pair<Boolean, List<StructForUnitEnable>> enableUnitFiles(List<String> names, boolean runtime, boolean force);
+    Pair<Boolean, List<StructForUnitEnableAndDisable>> enableUnitFiles(List<String> names, boolean runtime, boolean force);
 
     @DBusMemberName(value = "Exit")
     void exit();

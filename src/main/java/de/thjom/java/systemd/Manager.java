@@ -14,6 +14,7 @@ package de.thjom.java.systemd;
 import java.math.BigInteger;
 import java.util.List;
 
+import de.thjom.java.systemd.types.*;
 import org.freedesktop.dbus.DBusPath;
 import org.freedesktop.dbus.connections.impl.DBusConnection;
 import org.freedesktop.dbus.exceptions.DBusException;
@@ -22,12 +23,6 @@ import org.freedesktop.dbus.interfaces.Introspectable;
 import de.thjom.java.systemd.Unit.Mode;
 import de.thjom.java.systemd.Unit.Who;
 import de.thjom.java.systemd.interfaces.ManagerInterface;
-import de.thjom.java.systemd.types.DynamicUser;
-import de.thjom.java.systemd.types.UnitFileChange;
-import de.thjom.java.systemd.types.UnitFileInstallChange;
-import de.thjom.java.systemd.types.UnitFileType;
-import de.thjom.java.systemd.types.UnitProcessType;
-import de.thjom.java.systemd.types.UnitType;
 
 public class Manager extends InterfaceAdapter {
 
@@ -195,7 +190,7 @@ public class Manager extends InterfaceAdapter {
         getInterface().clearJobs();
     }
 
-    public List<UnitFileChange> disableUnitFiles(final List<String> names, final boolean runtime) {
+    public List<StructForUnitEnableAndDisable> disableUnitFiles(final List<String> names, final boolean runtime) {
         return getInterface().disableUnitFiles(names, runtime);
     }
 
@@ -203,7 +198,7 @@ public class Manager extends InterfaceAdapter {
         return getInterface().dump();
     }
 
-    public Pair<Boolean, List<StructForUnitEnable>> enableUnitFiles(final List<String> names, final boolean runtime, final boolean force) {
+    public Pair<Boolean, List<StructForUnitEnableAndDisable>> enableUnitFiles(final List<String> names, final boolean runtime, final boolean force) {
         return getInterface().enableUnitFiles(names, runtime, force);
     }
 

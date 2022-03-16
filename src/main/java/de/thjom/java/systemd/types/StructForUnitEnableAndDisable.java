@@ -1,9 +1,9 @@
-package de.thjom.java.systemd;
+package de.thjom.java.systemd.types;
 
 import org.freedesktop.dbus.Struct;
 import org.freedesktop.dbus.annotations.Position;
 
-public final class StructForUnitEnable extends Struct {
+public final class StructForUnitEnableAndDisable extends Struct {
     @Position(0)
     public final String a;
     @Position(1)
@@ -11,7 +11,7 @@ public final class StructForUnitEnable extends Struct {
     @Position(2)
     public final String c;
 
-    public StructForUnitEnable(String a, String b, String c) {
+    public StructForUnitEnableAndDisable(String a, String b, String c) {
         this.a = a;
         this.b = b;
         this.c = c;
