@@ -11,7 +11,9 @@
 
 package de.thjom.java.systemd.interfaces;
 
+import de.thjom.java.systemd.Pair;
 import de.thjom.java.systemd.Signal;
+import de.thjom.java.systemd.StructForUnitEnable;
 import de.thjom.java.systemd.types.*;
 import org.freedesktop.dbus.DBusPath;
 import org.freedesktop.dbus.annotations.DBusInterfaceName;
@@ -43,7 +45,7 @@ public interface ManagerInterface extends DBusInterface {
     String dump();
 
     @DBusMemberName(value = "EnableUnitFiles")
-    List<UnitFileChange> enableUnitFiles(List<String> names, boolean runtime, boolean force);
+    Pair<Boolean, List<StructForUnitEnable>> enableUnitFiles(List<String> names, boolean runtime, boolean force);
 
     @DBusMemberName(value = "Exit")
     void exit();
@@ -245,7 +247,7 @@ public interface ManagerInterface extends DBusInterface {
     class StartupFinished extends Signal {
 
         public StartupFinished(String objectPath, long firmware, long loader, long kernel, long initrd,
-                long userspace, long total) throws DBusException {
+                               long userspace, long total) throws DBusException {
             super(objectPath, firmware, loader, kernel, initrd, userspace, total);
         }
 

@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.freedesktop.dbus.exceptions.DBusException;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,11 +38,14 @@ public class UnitFactory {
 
     /**
      * WIP: Fleshing this out. Experimenting with dbus manager.
+     *
      * @return
      * @throws IOException
      */
-    public int startUnit() throws IOException, DBusException {
-        val out = Systemd.get().getManager().enableUnitFiles(List.of(unitFile.getPath()), true, true);
+    public int startUnit() throws DBusException {
+        val systemd = Systemd.get(Systemd.InstanceType.SYSTEM);
+        val manager = systemd.getManager();
+        manager.enableUnitFiles(List.of(unitFile.getPath()), true, true);
         return 0;
     }
 

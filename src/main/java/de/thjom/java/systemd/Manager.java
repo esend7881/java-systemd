@@ -203,7 +203,7 @@ public class Manager extends InterfaceAdapter {
         return getInterface().dump();
     }
 
-    public List<UnitFileChange> enableUnitFiles(final List<String> names, final boolean runtime, final boolean force) {
+    public Pair<Boolean, List<StructForUnitEnable>> enableUnitFiles(final List<String> names, final boolean runtime, final boolean force) {
         return getInterface().enableUnitFiles(names, runtime, force);
     }
 
